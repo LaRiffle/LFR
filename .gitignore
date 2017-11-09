@@ -1,5 +1,6 @@
 /.web-server-pid
 /app/config/parameters.yml
+/src/LFR/StoreBundle/Controller/AdminController.php
 /build/
 /phpunit.xml
 /var/*
