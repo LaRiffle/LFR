@@ -111,6 +111,11 @@ class Creation
     private $attributes;
 
     /**
+     * @ORM\ManyToMany(targetEntity="LFR\UserBundle\Entity\User", cascade={"persist"})
+     */
+    private $lovers;
+
+    /**
      * Get id
      *
      * @return int
@@ -462,5 +467,44 @@ class Creation
     public function getAttributes()
     {
         return $this->attributes;
+    }
+
+    /**
+     * Add lover
+     *
+     * @param \LFR\UserBundle\Entity\User $user
+     *
+     * @return Creation
+     */
+    public function addLover(\LFR\UserBundle\Entity\User $user)
+    {
+        $this->lovers[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \LFR\UserBundle\Entity\User $user
+     */
+    public function removeLover(\LFR\UserBundle\Entity\User $user)
+    {
+        $this->lovers->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLovers()
+    {
+        return $this->lovers;
+    }
+
+    public function emptyLovers()
+    {
+        $this->lovers = [];
     }
 }

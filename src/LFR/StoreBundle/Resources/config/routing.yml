@@ -17,12 +17,21 @@ lfr_store_explore:
 lfr_store_show:
     path:     /show/{id}
     defaults: { _controller: LFRStoreBundle:Search:show, id:0 }
+lfr_store_creation_love:
+    path:     /creation/love/{id}
+    defaults: { _controller: LFRStoreBundle:Creation:love, id:0 }
+lfr_store_creation_unlove:
+    path:     /creation/unlove/{id}
+    defaults: { _controller: LFRStoreBundle:Creation:unlove, id:0 }
 lfr_store_history:
     path:     /histoire
     defaults: { _controller: LFRStoreBundle:Information:history }
 lfr_store_contact:
     path:     /contact
     defaults: { _controller: LFRStoreBundle:Information:contact }
+lfr_store_selection:
+    path:     /selection
+    defaults: { _controller: LFRStoreBundle:Search:selection }
 
 lfr_admin_register:
     path:     /register

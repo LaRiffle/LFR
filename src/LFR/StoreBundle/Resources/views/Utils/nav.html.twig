@@ -1,7 +1,27 @@
-<a href="{{ path('lfr_store_homepage') }}" class="sober_link">
-<h1 class="special-font" style="margin-top: 7px;">lefilrouge</h1>
-<h2>Aliénor Dubé</h2>
-</a>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div id="nav_left_icon" class="top_circle_icon">
+        <a href="{{ path('lfr_store_selection') }}" style="color:#BA0020;">
+          <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+          <i class="fa fa-heart fa-2x full-heart" aria-hidden="true"></i>
+        </a><br />
+        <span id="nb_love" class="badge badge-danger">
+          {{ render(controller('LFRStoreBundle:Admin:register_or_login')) }}
+        </span>
+      </div>
+      <div id="nav_right_icon" class="top_circle_icon">
+        <a href="{{ path('logout') }}">
+          <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
+        </a>
+      </div>
+      <a href="{{ path('lfr_store_homepage') }}" class="sober_link">
+      <h1 class="special-font" style="margin-top: 7px;">lefilrouge</h1>
+      <h2>Aliénor Dubé</h2>
+      </a>
+    </div>
+  </div>
+</div>
 <nav class="navbar navbar-toggleable-sm navbar-light top-navbar">
 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
@@ -21,7 +41,7 @@
   </ul>
 </div>
 </nav>
-<a href="#"><div id="fb-icon" style="display: none"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></div></a>
+<a href="#"><div id="fb-icon" style="display: none" class="top_circle_icon"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></div></a>
 <script>
   setTimeout(function(){
     $('#fb-icon').fadeIn();

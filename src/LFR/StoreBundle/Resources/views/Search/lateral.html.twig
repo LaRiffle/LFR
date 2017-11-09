@@ -30,7 +30,7 @@
       </li>
       <div>
         {% for gender in genders %}
-        <div id="gender{{ gender.id }}" class="gender hide">
+        <div id="gender{{ gender.id }}" class="gender {% if not loop.first %}hide{% endif %}">
         {% for type in gender.types %}
           <li class="list-group-item justify-content-between">
             <a href="#type-{{ type.id }}" class="filter">

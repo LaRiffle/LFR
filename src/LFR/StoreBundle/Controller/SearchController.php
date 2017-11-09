@@ -2,6 +2,7 @@
 
 namespace LFR\StoreBundle\Controller;
 
+use LFR\StoreBundle\Entity\Creation;
 use LFR\StoreBundle\Entity\Gender;
 use LFR\StoreBundle\Entity\Type;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,6 +38,45 @@ class SearchController extends Controller
           'collection_id' => $collection,
           'categories' => $categories,
           'category_id' => $category
+        ));
+    }
+    public function selectionAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('LFRStoreBundle:Creation');
+        $creations = $repository->findBy(array(), array('id' => 'desc'));
+        $user = $this->getUser();
+        $loved_creations = [];
+        foreach ($creations as $creation) {
+          foreach ($creation->getLovers() as $lover) {
+            if($lover->getUsername() == $user->getUsername()){
+              $loved_creations[] = $creation;
+            }
+          }
+        }
+        $imagehandler = $this->container->get('lfr_store.imagehandler');
+        foreach ($loved_creations as $creation) {
+          $fileNames = $creation->getImages();
+          $path_small_image = $imagehandler->get_image_in_quality($fileNames[0], 'xs');
+          $creation->small_image = $path_small_image;
+        }
+        $repository = $em->getRepository('LFRStoreBundle:Gender');
+        $genders = $repository->findAll();
+        $typeRepository = $em->getRepository('LFRStoreBundle:Type');
+        foreach ($genders as $gender) {
+          $gender->types = $typeRepository->whereGender($gender->getId());
+        }
+        $repository = $em->getRepository('LFRStoreBundle:Collection');
+        $collections = $repository->findAll();
+        $repository = $em->getRepository('LFRStoreBundle:Category');
+        $categories = $repository->findAll();
+        return $this->render($this->entityNameSpace.':selection.html.twig', array(
+            'creations' => $loved_creations,
+            'genders' => $genders,
+            'collections' => $collections,
+            'collection_id' => 'all',
+            'categories' => $categories,
+            'category_id' => 'all'
         ));
     }
     public function showAction()

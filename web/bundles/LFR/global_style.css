@@ -213,20 +213,68 @@ button.navbar-toggler:hover {
     text-align: center;
   }
 }
-#fb-icon {
+.top_circle_icon {
   text-align: center;
-  position: fixed;
   width: 50px;
   height: 50px;
-  color: #3B5B98;
-  border: 2px #3B5B98 solid;
+  border: 2px rgba(40, 42, 201, 0.33) solid;
   border-radius: 25px;
-  bottom: 20px;
-  right: 20px;
   padding-top: 7px;
   background-color: rgba(255, 255, 255, 0.5);
   z-index: 10;
 }
+#fb-icon {
+  color: #3B5B98;
+  border-color: #3B5B98;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+#nav_left_icon, #nav_right_icon, .love_icon {
+  width: 40px;
+  height: 40px;
+  border: 1px rgba(0,0,0,.125) solid;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  margin-top: 38px;
+  transition: border 0.5s;
+}
+#nav_left_icon:hover, .love_icon:hover {
+  border-color: #BA0020;
+}
+#nav_left_icon:hover i.full-heart, .love_icon:hover i.full-heart {
+  opacity: 1;
+}
+.full-heart {
+  opacity: 0;
+  transition: opacity 0.5s;
+  position: relative;
+  bottom: 1.5rem;
+}
+#nav_left_icon{
+  float: left;
+  padding-top: 9px;
+}
+#nav_right_icon{
+  float: right;
+  padding-top: 7px;
+}
+.love_icon {
+  margin-top: 0px;
+  padding-top: 9px;
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  left: 10px;
+}
+#nb_love {
+  position: relative;
+  bottom: 34px;
+  left: 15px;
+  background-color: #BA0020;
+}
+
+
 .large-icon {
   margin-top: 30px;
 }

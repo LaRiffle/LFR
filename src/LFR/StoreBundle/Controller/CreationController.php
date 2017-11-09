@@ -6,6 +6,7 @@ use LFR\StoreBundle\Entity\Creation;
 use LFR\StoreBundle\Entity\Type;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\File;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -39,6 +40,30 @@ class  CreationController extends Controller
           'creations' => $creations,
         ));
     }
+    public function loveAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository($this->entityNameSpace);
+        $creation = $repository->find($id);
+        $user = $this->getUser();
+        $creation->addLover($user);
+        $em->persist($creation);
+        $em->flush();
+        $data = ['output' => 'Love done.'];
+        return new JsonResponse($data);
+    }
+    public function unloveAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository($this->entityNameSpace);
+        $creation = $repository->find($id);
+        $user = $this->getUser();
+        $creation->removeLover($user);
+        $em->persist($creation);
+        $em->flush();
+        $data = ['output' => 'Done.'];
+        return new JsonResponse($data);
+    }
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -55,6 +80,13 @@ class  CreationController extends Controller
             $creation->colors[] = $attribute;
           } else {
             $creation->others[] = $attribute;
+          }
+        }
+        $user = $this->getUser();
+        $creation->love = false;
+        foreach ($creation->getLovers() as $lover) {
+          if($lover->getUsername() == $user->getUsername()){
+            $creation->love = true;
           }
         }
         return $this->render('LFRStoreBundle:Search:show.html.twig', array(
