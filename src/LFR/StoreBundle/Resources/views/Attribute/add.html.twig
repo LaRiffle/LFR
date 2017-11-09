@@ -4,8 +4,8 @@
   <div class="row" style="margin-top: 25px;">
     <div class="offset-sm-3 col-sm-6">
       <form class="form-signin" name="form" method="post" action="{{ path('lfr_admin_creation_attribute_add',{'id': id, 'category': category}) }}">
-        {% set input_form="RPZDiscussionBundle:Utils:form_input.html.twig" %}
-        {% set save_form="RPZDiscussionBundle:Utils:form_save.html.twig" %}
+        {% set input_form="LFRStoreBundle:Utils:form_input.html.twig" %}
+        {% set save_form="LFRStoreBundle:Utils:form_save.html.twig" %}
         Ajouter/Modifier une attribut de type {{ category }}
         {{ include(input_form, {'element': form.name, 'name':"Nom de l'attribut"}) }}
         {{ include(input_form, {'element': form.value, 'name':"Valeur"}) }}

@@ -1,5 +1,5 @@
 <div class="card attribute-card" data-selected="0" {% if attribute.category == "other" %}style="width: 100%;"{% endif %}>
-  {% if is_granted('ROLE_USER') and allow_modify %}
+  {% if is_granted('ROLE_ADMIN') and allow_modify %}
     <ul class="edition-btn">
       <li style="float: left;">
         <a href="{{ path('lfr_admin_creation_attribute_add', {'id': attribute.id, 'category': attribute.category}) }}"><i class="fa fa-pencil-square-o"></i></a>

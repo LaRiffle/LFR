@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="col-sm-4">
-        {% if is_granted('ROLE_USER') %}
+        {% if is_granted('ROLE_ADMIN') %}
           {% set edition_buttons="LFRStoreBundle:Utils:edition.html.twig" %}
           {{ include(edition_buttons, {'edit': path('lfr_admin_creation_add', {'id': creation.id}), 'remove': path('lfr_admin_creation_remove', {'id': creation.id}) }) }}
         {% endif %}

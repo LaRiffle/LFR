@@ -1,17 +1,17 @@
 lfr_store:
     resource: "@LFRStoreBundle/Resources/config/routing.yml"
-    prefix:   /lefilrouge/
+    prefix:   /lefilrouge5ab3c5cc1f2d87a67b89dca3a5/
 
+default:
+    path: /
+    defaults:
+        _controller: LFRStoreBundle:Home:work
 
 login:
     path: /login
     defaults:
-        _controller: RPZUserBundle:Security:login
+        _controller: LFRUserBundle:Security:login
 login_check:
     path: /login_check
 logout:
     path: /logout
-
-rpz_discussion:
-    resource: "@RPZDiscussionBundle/Resources/config/routing.yml"
-    prefix:   /

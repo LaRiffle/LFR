@@ -37,9 +37,6 @@ class  CollectionController extends Controller
     }
 
     public function addAction(Request $request, $id = 0) {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         $oldFileName = null;
         if($id == 0) {
@@ -106,9 +103,6 @@ class  CollectionController extends Controller
         ));
     }
     public function removeAction(Request $request, $id){
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         $collection = $em->getRepository($this->entityNameSpace)->find($id);
         $em->remove($collection);

@@ -7,8 +7,8 @@
     <div class="col-sm-6 offset-sm-3">
       <form name="form" class="form-signin" method="post" action="{{ path('lfr_admin_category_add',{'id': categoryId}) }}">
         <h3 class="form-signin-heading">{% if categoryId == 0 %}Ajouter{% else %}Modifier{% endif %} une catégorie</h3>
-        {% set input_form="RPZDiscussionBundle:Utils:form_input.html.twig" %}
-        {% set save_form="RPZDiscussionBundle:Utils:form_save.html.twig" %}
+        {% set input_form="LFRStoreBundle:Utils:form_input.html.twig" %}
+        {% set save_form="LFRStoreBundle:Utils:form_save.html.twig" %}
         {{ include(input_form, {'element': form.name, 'name':"Nom"}) }}
         {{ include(input_form, {'element': form.slug, 'name':"Alias pour les url"}) }}
         {{ include(save_form, {'element': form.save, 'name':"Ajouter la catégorie"}) }}

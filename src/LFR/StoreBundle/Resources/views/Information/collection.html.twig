@@ -23,7 +23,7 @@
               <img class="collection-img" src="{{ asset('uploads/img/' ~ collection.small_image) }}">
               <div class="item-overlay top"></div>
               <div class="collection-description">
-                {% if is_granted('ROLE_USER') %}
+                {% if is_granted('ROLE_ADMIN') %}
                   {% set edition_buttons="LFRStoreBundle:Utils:edition.html.twig" %}
                   {{ include(edition_buttons, {'edit': path('lfr_admin_collection_add', {'id': collection.id}), 'remove': path('lfr_admin_collection_remove', {'id': collection.id}) }) }}
                 {% endif %}
@@ -36,7 +36,7 @@
           </div>
           {% endfor %}
         </div>
-        {% if is_granted('ROLE_USER') %}
+        {% if is_granted('ROLE_ADMIN') %}
           <a class="btn btn-primary" style="margin-top: 5px;" href="{{ path('lfr_admin_collection_add')}}">+ Créer une nouvelle collection</a>
         {% endif %}
       </div>

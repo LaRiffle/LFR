@@ -1,5 +1,5 @@
 <div id="no_results"><h4>Pas de résultats</h4></div>
-{% if is_granted('ROLE_USER') %}
+{% if is_granted('ROLE_ADMIN') %}
 <div class="img-thumbnail creation-icon add-icon" style="z-index: {{creations|length + 1}};">
   <div class="img-cadre">
     <a href="{{ path('lfr_admin_creation_add') }}">

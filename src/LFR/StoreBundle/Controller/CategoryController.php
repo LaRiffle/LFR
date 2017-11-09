@@ -27,9 +27,6 @@ class CategoryController extends Controller
 
     public function showAction($id)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository($this->entityNameSpace);
         $category = $repository->find($id);
@@ -39,9 +36,6 @@ class CategoryController extends Controller
     }
 
     public function addAction(Request $request, $id = 0) {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         if($id == 0) {
             $category = new Category();
@@ -68,9 +62,6 @@ class CategoryController extends Controller
         ));
     }
     public function removeAction(Request $request, $id){
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository($this->entityNameSpace)->find($id);
         $em->remove($category);

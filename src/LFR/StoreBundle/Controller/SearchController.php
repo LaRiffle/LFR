@@ -44,9 +44,6 @@ class SearchController extends Controller
         return $this->render($this->entityNameSpace.':show.html.twig');
     }
     public function genderAddAction(Request $request, $id = 0) {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         if($id == 0) {
             $gender = new Gender();
@@ -72,9 +69,6 @@ class SearchController extends Controller
         ));
     }
     public function genderRemoveAction(Request $request, $id){
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         $gender= $em->getRepository('LFRStoreBundle:Gender')->find($id);
 
@@ -88,9 +82,6 @@ class SearchController extends Controller
         return $this->redirect($this->generateUrl('lfr_store_explore'));
     }
     public function typeAddAction(Request $request, $gender_id, $id = 0) {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         if($id == 0) {
             $type = new Type();
@@ -122,9 +113,6 @@ class SearchController extends Controller
 
     }
     public function typeRemoveAction(Request $request, $id){
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         $type = $em->getRepository('LFRStoreBundle:Type')->find($id);
         $em->remove($type);

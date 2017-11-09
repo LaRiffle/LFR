@@ -1,0 +1,22 @@
+{% extends "LFRStoreBundle::layout.html.twig" %}
+{% block body %}
+<div id="attribute-page">
+  {% set navbar = "LFRStoreBundle:Utils:nav.html.twig" %}
+  {% set text = "LFRStoreBundle:Utils:text.html.twig" %}
+  {% set image = "LFRStoreBundle:Utils:image.html.twig" %}
+  {{ include(navbar, {'active': 'collection'}) }}
+  <div class="container">
+    {% set card="LFRStoreBundle:Attribute:card_attribute.html.twig" %}
+    <div class="row" style="margin-top: 25px;">
+      <div class="offset-sm-3 col-sm-6">
+        <h4 style="text-align: center;">Utilisateurs</h4>
+        <a href="{{ path('lfr_admin_user_add') }}">Create user</a><br />
+        {% set edition_buttons="LFRStoreBundle:Utils:edition.html.twig" %}
+        {% for user in users %}
+          {{ user.username }} {{ user.password }} {{ user.roles|join('|') }}
+          {{ include(edition_buttons, {'edit': path('lfr_admin_user_add', {'id': user.id}), 'remove': path('lfr_admin_user_remove', {'id': user.id}) }) }}
+          <br />
+        {% endfor %}
+{% endblock %}
+{% block script %}
+{% endblock %}

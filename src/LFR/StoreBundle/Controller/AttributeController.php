@@ -19,9 +19,6 @@ class AttributeController extends Controller
     public $entityNameSpace = 'LFRStoreBundle:Attribute';
     public function indexAction()
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository($this->entityNameSpace);
         $attributes = $repository->findAll();
@@ -44,9 +41,6 @@ class AttributeController extends Controller
         ));
     }
     public function addAction(Request $request, $id = 0, $category) {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         if($id == 0) {
             $attribute = new Attribute();
@@ -75,9 +69,6 @@ class AttributeController extends Controller
 
     }
     public function removeAction(Request $request, $id){
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         $type = $em->getRepository('LFRStoreBundle:Attribute')->find($id);
         $em->remove($type);

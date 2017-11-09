@@ -116,7 +116,7 @@ class Type
     /**
      * Get gender
      *
-     * @return \RPZ\DiscussionBundle\Entity\Gender
+     * @return \LFR\StoreBundle\Entity\Gender
      */
     public function getGender()
     {

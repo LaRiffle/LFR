@@ -49,9 +49,6 @@ class InformationController extends Controller
       ));
     }
     public function textAddAction(Request $request, $id = 0) {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         if($id == 0) {
             $text = new Text();
@@ -87,9 +84,6 @@ class InformationController extends Controller
     }
 
     public function imageAddAction(Request $request, $id = 0) {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-          return $this->redirect($this->generateUrl('login'));
-        }
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('LFRStoreBundle:Image');
         $oldFileName = null;

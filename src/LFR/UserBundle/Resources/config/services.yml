@@ -1,0 +1,4 @@
+services:
+#    lfr_user.example:
+#        class: LFR\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

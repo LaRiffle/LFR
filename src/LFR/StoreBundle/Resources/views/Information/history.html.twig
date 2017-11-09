@@ -53,7 +53,7 @@
 </div>
 {% endblock %}
 {% block script %}
-{% if is_granted('ROLE_USER') %}
+{% if is_granted('ROLE_ADMIN') %}
   {% set edit_script = "LFRStoreBundle:Utils:edit-handler.html.twig" %}
   {{ include(edit_script) }}
 {% endif %}

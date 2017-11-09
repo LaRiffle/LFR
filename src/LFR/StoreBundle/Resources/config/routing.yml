@@ -24,6 +24,22 @@ lfr_store_contact:
     path:     /contact
     defaults: { _controller: LFRStoreBundle:Information:contact }
 
+lfr_admin_register:
+    path:     /register
+    defaults: { _controller: LFRStoreBundle:Admin:register }
+
+lfr_admin_init_create:
+    path:     /admin_init/{key}
+    defaults: { _controller: LFRStoreBundle:Admin:createAdmin }
+lfr_admin_user_add:
+    path:     /admin/user/add/{id}
+    defaults: { _controller: LFRStoreBundle:Admin:addUser, id: 0 }
+lfr_admin_users_show:
+    path:     /admin/users/show
+    defaults: { _controller: LFRStoreBundle:Admin:showUsers }
+lfr_admin_user_remove:
+    path:     /admin/user/remove/{id}
+    defaults: { _controller: LFRStoreBundle:Admin:removeUser }
 lfr_admin_text_add:
     path:     /admin/text/add/{id}
     defaults: { _controller: LFRStoreBundle:Information:textAdd, id:0 }
@@ -49,7 +65,7 @@ lfr_admin_creation_add:
     path:     /admin/creation/add/{id}
     defaults: { _controller: LFRStoreBundle:Creation:add, id:0 }
 lfr_admin_creation_show:
-    path:     /admin/creation/{id}
+    path:     /creation/{id}
     defaults: { _controller: LFRStoreBundle:Creation:show }
     requirements:
         id:   \d+
