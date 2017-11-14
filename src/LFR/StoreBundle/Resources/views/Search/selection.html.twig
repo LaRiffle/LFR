@@ -10,12 +10,12 @@
   {{ include(navbar, {'active': 'collection'}) }}
   <div class="container">
     <div class="row">
-      <div class="col-md-3 col-sm-6">
-        {{ include(lateral_navbar) }}
-      </div>
-      <div id="display_icons" class="col-md-9 col-sm-6">
+      {{ include(lateral_navbar) }}
+      <div id="display_icons" class="col-lg-8 col-xl-9">
         <div>
           <h3>Vos créations préférées</h3>
+          <div><a href="#" class="show-lateral visible-to-md btn btn-default">Filtrer les créations</a></div>
+
           {% set icons = "LFRStoreBundle:Creation:index.html.twig" %}
           {{ include(icons, {'creations': creations}) }}
         </div>
@@ -161,6 +161,19 @@
     z_index += 1;
   })
 
+</script>
+<script>
+  /*
+    Script for the lateral mobile volet
+  */
+  $('.close-lateral').on('click', function(e){
+    e.preventDefault();
+    $('#lateral_mobile').css('right', '-280px');
+  })
+  $('.show-lateral').on('click', function(e){
+    e.preventDefault();
+    $('#lateral_mobile').css('right', '0px');
+  })
 </script>
 <script>
 $(document).ready(function(){
