@@ -53,8 +53,8 @@ if(explorer || mobile) {
     $('#front-page').slideUp(1000);
   }, 5000);
 } else { // Else do animation
-  // Special settings for safari
-  if(safari){
+  // Special settings for safari and chrome
+  if(safari || chrome){
     $('#title h1 span:last-of-type').remove();
     $('#title h1 span:last-of-type').html('ge');
     $('h2.signature').css('left', '0.8rem');
