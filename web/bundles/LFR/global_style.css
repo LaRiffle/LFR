@@ -761,6 +761,7 @@ ul.edition-btn li:after {
     min-width: 30%;
     max-width: 300px;
     transition:top 0.4s linear, left 0.4s linear;
+    visibility: hidden;
 }
 @media screen and (max-width: 576px) {
   #explore-page #display_icons {
