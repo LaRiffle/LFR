@@ -8,11 +8,14 @@
   {% set navbar = "LFRStoreBundle:Utils:nav.html.twig" %}
   {% set lateral_navbar = "LFRStoreBundle:Search:lateral.html.twig" %}
   {{ include(navbar, {'active': 'collection'}) }}
-  <div class="container">
+  <div class="container container-icons">
     <div class="row">
       {{ include(lateral_navbar) }}
       <div id="display_icons" class="col-lg-8 col-xl-9">
-        <a href="#" class="show-lateral visible-to-md btn btn-default">Filtrer les créations</a>
+        <div class="horizontal-scroller" style="margin-bottom: 3px;">
+          <a href="#" id="show_lateral" class="show-lateral visible-to-md btn btn-default" style="z-index: 200;"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer les créations</a>
+          <a href="#" alt="Aligner les icones" class="reorder-btn visible-from-sm visible-to-md btn btn-default" style="z-index: 200;"><i class="fa fa-th" aria-hidden="true"></i> Réorganiser</a>
+        </div>
         <div>
           {{ render(controller('LFRStoreBundle:Creation:index')) }}
         </div>
@@ -23,6 +26,7 @@
 {% endblock %}
 {% block script %}
 <script>
+  var icon_per_row = 3;
   function Icon(x, y) {
     var icon = {};
     icon.x = x-50;
@@ -32,7 +36,7 @@
     icon.contains = function (x, y) {
         x += this.width/2
         y += this.height/2
-        console.log(x, this.x, this.x + this.width);
+        //console.log(x, this.x, this.x + this.width);
         return this.x <= x && x <= this.x + this.width &&
                this.y <= y && y <= this.y + this.height;
     }
@@ -51,23 +55,29 @@
   var width = $('#display_icons').width() - 200;
   var height = 280;
   icons = [];
-  $('.creation-icon').slice(0,10).each(function(){
+  $('.lfr-icon').slice(0,10).each(function(){
       $(this).css('position', 'absolute').fadeIn();
-      var x = Math.random() * width;
-      var y = Math.random() * height;
-      var icon = Icon(x, y);
-      var i = 10;
-      while(icon_overlap(icon) && i > 0){
-        i--;
-        x = Math.random() * width;
-        y = Math.random() * height;
-        icon = Icon(x, y);
-        console.log('try'+i);
+      if (window.matchMedia('screen and (min-width: 568px)').matches) {
+        var idx = $(this).index('.lfr-row .lfr-icon');
+        var grid_j = idx % 3;
+        var grid_i = (idx - idx % 3)/3;
+        console.log(grid_i + ' ' + grid_j);
+        var x = 10 - 50*grid_j + 0.3*Math.random() * width;
+        var y = 10 - 50*grid_i + 0.3*Math.random() * height;
+        var icon = Icon(x, y);
+        var i = 10;
+        while(icon_overlap(icon) && i > 0){
+          i--;
+          x = 10 - 50*grid_j + 0.3*Math.random() * width;
+          y = 10 - 50*grid_i + 0.3*Math.random() * height;
+          icon = Icon(x, y);
+          console.log('try'+i);
+        }
+        theta = (Math.random() - 0.5)*30;
+        $(this).css('left', x);
+        $(this).css('top', y);
+        //$(this).css('transform', 'rotate('+theta+'deg)');
       }
-      theta = (Math.random() - 0.5)*30;
-      $(this).css('left', x);
-      $(this).css('top', y);
-      $(this).css('transform', 'rotate('+theta+'deg)');
       var img = $(this).find('img');
       var img_width = img.width();
       var img_height = img.height();
@@ -98,7 +108,7 @@
 
   function icon_filter(){
     var visible_items = 0;
-    $('.creation-icon:not(.add-icon)').each(function(){
+    $('.lfr-icon:not(.add-icon)').each(function(){
       var collection = $(this).attr('data-collection');
       var category = $(this).attr('data-category');
       var types = $(this).attr('data-type').split(',').map(Number);
@@ -113,11 +123,11 @@
         visible = visible && has_one_type;
       }
       if(visible){
-        $(this).show();
+        $(this).css('display', 'block');
         reshape_image(this);
         visible_items++;
       } else {
-        $(this).hide();
+        $(this).css('display', 'none');
       }
     });
     if(visible_items > 0){
@@ -135,7 +145,7 @@
   }
   $(document).ready(function(){
     setTimeout(function(){
-      $('.creation-icon').hide().css('visibility', 'visible').fadeIn();
+      $('.lfr-icon').css('display', 'none').css('visibility', 'visible').fadeIn();
       icon_filter();
     }, 400);
   });
@@ -143,14 +153,15 @@
   var first_click = true;
   function reorganize(){
     if(first_click){
-      $('.creation-icon').each(function(){
-        $(this).css('position', 'static');
+      $('.lfr-icon').each(function(){
+        $(this).css('left', '0');
+        $(this).css('top', '0');
         $(this).css('transform', 'none');
       });
       first_click = false;
     }
   }
-  $('#reorder-btn').on('click', function(e){
+  $('.reorder-btn').on('click', function(e){
     e.preventDefault();
     reorganize();
   });
@@ -188,9 +199,9 @@
 <script>
 /* Put on top creation on which we hover with the mouse */
 
-  nb_creation = $('.creation-icon').length;
+  nb_creation = $('.lfr-icon').length;
   z_index = nb_creation;
-  $('.creation-icon').mouseenter(function(){
+  $('.lfr-icon').mouseenter(function(){
     var $this = $(this)
     $this.css('z-index', z_index);
     /*

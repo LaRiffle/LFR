@@ -6,39 +6,61 @@
   {{ include(navbar, {'active': 'collection'}) }}
   <div class="container">
     <div class="row">
-      <div class="col-sm-1">
-
+      <div class="col-md-1">
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-7 col-md-6">
+        <div class="visible-to-xs">
+          <h3>{{ creation.name }}</h3>
+          <h4>
+            {% if creation.onsold %}
+              <span class="badge badge-primary badge-pill" style="padding: 16px;padding-top: 11px;padding-bottom: 9px;">{{ creation.price }} €</span>
+            {% endif %}
+            <span id="love" class="love_icon top_circle_icon">
+              <a href="#" style="color:#BA0020;">
+                {% if creation.love %}
+                  <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
+                {% else %}
+                  <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+                {% endif %}
+              </a>
+            </span>
+          </h4>
+        </div>
         {% set carousel = "LFRStoreBundle:Search:carousel.html.twig" %}
         {{ include(carousel, {'url': creation.images}) }}
-        <div style="margin-top:20px;">
+        <div class="visible-from-sm">
           <h4>{{ creation.title2 }}</h4>
           <p>{{ creation.text2|nl2br }}</p>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-5 col-md-4">
         {% if is_granted('ROLE_ADMIN') %}
           {% set edition_buttons="LFRStoreBundle:Utils:edition.html.twig" %}
           {{ include(edition_buttons, {'edit': path('lfr_admin_creation_add', {'id': creation.id}), 'remove': path('lfr_admin_creation_remove', {'id': creation.id}) }) }}
         {% endif %}
-        <h3>{{ creation.name }}</h3>
-        <h4>
-          {% if creation.onsold %}
-            <span class="badge badge-primary badge-pill" style="padding: 16px;padding-top: 11px;padding-bottom: 9px;">{{ creation.price }} €</span>
-          {% endif %}
-          <span id="love" class="love_icon top_circle_icon">
-            <a href="#" style="color:#BA0020;">
-              {% if creation.love %}
-                <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
-              {% else %}
-                <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
-              {% endif %}
-            </a>
-          </span>
-        </h4>
+        <div class="visible-from-sm">
+          <h3>{{ creation.name }}</h3>
+          <h4>
+            {% if creation.onsold %}
+              <span class="badge badge-primary badge-pill" style="padding: 16px;padding-top: 11px;padding-bottom: 9px;">{{ creation.price }} €</span>
+            {% endif %}
+            <span id="love" class="love_icon top_circle_icon">
+              <a href="#" style="color:#BA0020;">
+                {% if creation.love %}
+                  <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
+                {% else %}
+                  <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+                {% endif %}
+              </a>
+            </span>
+          </h4>
+        </div>
         <h4>{{ creation.title1 }}</h4>
         <p>{{ creation.text1|nl2br }}</p>
+        <div class="visible-to-xs">
+          <h4>{{ creation.title2 }}</h4>
+          <p>{{ creation.text2|nl2br }}</p>
+        </div>
          <ul id="notify" class="list-group" style="margin-bottom: 10px;">
            <!--<li class="list-group-item collapse-toggle justify-content-between">
              <h5 style="margin-bottom: 0px;">

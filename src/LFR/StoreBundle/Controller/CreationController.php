@@ -36,7 +36,7 @@ class  CreationController extends Controller
           $path_small_image = $imagehandler->get_image_in_quality($fileNames[0], 'xs');
           $creation->small_image = $path_small_image;
         }
-        return $this->render($this->entityNameSpace.':index.html.twig', array(
+        return $this->render($this->entityNameSpace.':index_insta.html.twig', array(
           'creations' => $creations,
         ));
     }
