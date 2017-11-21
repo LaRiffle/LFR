@@ -48,7 +48,9 @@ body, button, input, optgroup, select, textarea {
 .hide {
   display: none;
 }
-
+a:hover {
+  text-decoration: none;
+}
 #front-page {
   height: 100vh;
   width: 100%;
@@ -243,6 +245,13 @@ button.navbar-toggler:hover {
   bottom: 20px;
   right: 20px;
 }
+#nav_left_icon, #nav_right_icon {
+  position: absolute;
+  top: 0px;
+}
+#nav_right_icon {
+  right: 15px;
+}
 #nav_left_icon, #nav_right_icon, .love_icon {
   width: 40px;
   height: 40px;
@@ -257,7 +266,7 @@ button.navbar-toggler:hover {
     margin-top: 13px;
   }
 }
-#nav_left_icon:hover, .love_icon:hover {
+#nav_left_icon:hover, .love_icon:hover, #nav_toggle_btn button:hover {
   border-color: #BA0020;
 }
 #nav_left_icon:hover i.full-heart, .love_icon:hover i.full-heart {
@@ -270,11 +279,11 @@ button.navbar-toggler:hover {
 }
 #nav_toggle_btn button {
   border-color: rgba(0,0,0,.1);
-  transition: border-color 0.3s;
-  right: 4rem;
+  transition: border 0.5s;
+  right: 1rem;
 }
 #nav_toggle_btn .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(186,0,32,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 }
 .full-heart {
@@ -310,7 +319,7 @@ button.navbar-toggler:hover {
     display: none;
   }
 }
-@media(max-width: 567px){
+@media(max-width: 576px){
   .visible-from-sm {
     display: none;
   }
@@ -342,9 +351,12 @@ button.navbar-toggler:hover {
     border-radius: 0px;
   }
   #lateral_mobile_bottom {
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     width: 100%;
+  }
+  #lateral_mobile_bottom li {
+    padding-bottom: 20px;
   }
 }
 
@@ -352,18 +364,48 @@ button.navbar-toggler:hover {
 .large-icon {
   margin-top: 30px;
 }
-.large-icon-left {
-  margin-left: 10%;
-  margin-right: 10%;
+.icon-dummy {
+    margin-top: 125%;
 }
-.large-icon-right {
-  margin-left: 10%;
-  margin-right: 10%;
+.large-icon .caption {
+    /*margin-top: 10px;
+    margin-bottom: 30px;*/
+}
+.large-icon .caption {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 0px;
+}
+@media screen and (min-width: 576px) {
+  .large-icon-left {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .large-icon-right {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .large-icon h3 {
+    color: white;
+  }
+  .large-icon .thumbnail img {
+    border: 1px #CCCCCC solid;
+  }
+  .large-icon a:hover img {
+    border: 1px #777777 solid;
+  }
+  .icon-dummy {
+    margin-top: 100%;
+  }
+  .large-icon .caption {
+      top: 56%;
+  }
 }
 .large-icon h3 {
   font-size: 2.5em;
   font-weight: lighter;
-  color: white;
   text-align: center;
 }
 @media screen and (max-width: 991px) and (min-width: 576px) {
@@ -377,7 +419,6 @@ button.navbar-toggler:hover {
 }
 .large-icon a:hover img {
   transform: scale(1.05); -webkit-transform: scale(1.05); -o-transform: scale(1.05); -moz-transform: scale(1.05);
-  border: 1px #777777 solid;
 }
 .large-icon a img {
     transition: all 0.5s;
@@ -390,9 +431,6 @@ button.navbar-toggler:hover {
     position: relative;
     width: 100%;
 }
-.icon-dummy {
-    margin-top: 100%;
-}
 .icon-element {
     position: absolute;
     top: 0;
@@ -402,15 +440,6 @@ button.navbar-toggler:hover {
 }
 .large-icon .thumbnail {
     position: relative;
-}
-.large-icon .thumbnail img {
-  border: 1px #CCCCCC solid;
-}
-.large-icon .caption {
-    position: absolute;
-    top: 56%;
-    left: 0;
-    width: 100%;
 }
 
 a.filter:hover, a.filter:focus  {
