@@ -15,7 +15,7 @@
             {% if creation.onsold %}
               <span class="badge badge-primary badge-pill" style="padding: 16px;padding-top: 11px;padding-bottom: 9px;">{{ creation.price }} €</span>
             {% endif %}
-            <span id="love" class="love_icon top_circle_icon">
+            <span class="love_btn love_icon top_circle_icon">
               <a href="#" style="color:#BA0020;">
                 {% if creation.love %}
                   <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
@@ -44,7 +44,7 @@
             {% if creation.onsold %}
               <span class="badge badge-primary badge-pill" style="padding: 16px;padding-top: 11px;padding-bottom: 9px;">{{ creation.price }} €</span>
             {% endif %}
-            <span id="love" class="love_icon top_circle_icon">
+            <span class="love_btn love_icon top_circle_icon">
               <a href="#" style="color:#BA0020;">
                 {% if creation.love %}
                   <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
@@ -157,7 +157,7 @@ $(document).ready(function(){
   });
 </script>
 <script>
-$('#love').on('click', function(e) {
+$('.love_btn').on('click', function(e) {
   e.preventDefault();
   $.ajax({
       url:'{% if creation.love %}{{ path('lfr_store_creation_unlove') }}{% else %}{{ path('lfr_store_creation_love') }}{% endif %}/{{ creation.id }}',
@@ -172,10 +172,10 @@ $('#love').on('click', function(e) {
           //console.log(data.output);
           var nb = Number($('#nb_love').html());
           {% if creation.love %}
-          $('#love .fa-heart').removeClass('fa-heart').addClass('fa-heart-o');
+          $('.love_btn .fa-heart').removeClass('fa-heart').addClass('fa-heart-o');
           $('#nb_love').html(nb-1);
           {% else %}
-          $('#love .fa-heart-o').removeClass('fa-heart-o').addClass('fa-heart');
+          $('.love_btn .fa-heart-o').removeClass('fa-heart-o').addClass('fa-heart');
           $('#nb_love').html(nb+1);
           {% endif %}
       }

@@ -22,15 +22,18 @@
             <a href="{{ path('lfr_store_explore', {'collection': collection.id }) }}">
               <img class="collection-img" src="{{ asset('uploads/img/' ~ collection.small_image) }}">
               <div class="item-overlay top"></div>
+            </a>
               <div class="collection-description">
                 {% if is_granted('ROLE_ADMIN') %}
                   {% set edition_buttons="LFRStoreBundle:Utils:edition.html.twig" %}
                   {{ include(edition_buttons, {'edit': path('lfr_admin_collection_add', {'id': collection.id}), 'remove': path('lfr_admin_collection_remove', {'id': collection.id}) }) }}
                 {% endif %}
-                <h3>{{ collection.title }}</h3>
-                <p>
-                  {{ collection.description }}
-                </p>
+                <a href="{{ path('lfr_store_explore', {'collection': collection.id }) }}">
+                  <h3>{{ collection.title }}</h3>
+                  <p>
+                    {{ collection.description }}
+                  </p>
+                </a>
               </div>
             </a>
           </div>
@@ -70,6 +73,17 @@
         $('.collection-img').each(function(){
           $(this).css('width', '100%');
           min_height = Math.min(min_height, $(this).height());
+        });
+        // We can't allow that a too flat image break all the display.
+        min_height = Math.max(min_height, 300);
+        $('.collection-img').each(function(){
+          if($(this).height() < min_height) {
+            var overflow_width = $(this).width()*(min_height/$(this).height() - 1);
+            $(this).css('margin-left', -overflow_width/2+'px');
+            $(this).css('margin-right', -overflow_width/2+'px');
+            $(this).css('max-width', 'none');
+            $(this).css('width', 100*min_height/$(this).height()+'%');
+          }
         });
         $('.collection-img').each(function(){
           var overflow = $(this).height() - min_height;
