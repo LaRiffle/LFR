@@ -3,26 +3,6 @@
   | Créations
 {% endblock %}
 {% block body %}
-
-<div id="explore-page">
-  {% set navbar = "LFRStoreBundle:Utils:nav.html.twig" %}
-  {% set lateral_navbar = "LFRStoreBundle:Search:lateral.html.twig" %}
-  {{ include(navbar, {'active': 'collection'}) }}
-  <div class="container container-icons">
-    <div class="row">
-      {{ include(lateral_navbar) }}
-      <div id="display_icons" class="col-lg-8 col-xl-9">
-        <div class="horizontal-scroller" style="margin-bottom: 3px;">
-          <a href="#" id="show_lateral" class="show-lateral visible-to-md btn btn-default" style="z-index: 200;"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer les créations</a>
-          <a href="#" alt="Aligner les icones" class="reorder-btn visible-from-sm visible-to-md btn btn-default" style="z-index: 200;"><i class="fa fa-th" aria-hidden="true"></i> Réorganiser</a>
-        </div>
-        <div>
-          {{ render(controller('LFRStoreBundle:Creation:index')) }}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock %}
 {% block script %}
 <script>
@@ -142,11 +122,15 @@
     } else {
       $('.vetement_filter').show();
     }
+    return visible_items;
   }
   $(document).ready(function(){
     setTimeout(function(){
       $('.lfr-icon').css('display', 'none').css('visibility', 'visible').fadeIn();
-      icon_filter();
+      var visible_items = icon_filter();
+      if(visible_items <= 3) {
+        reorganize();
+      }
     }, 400);
   });
 

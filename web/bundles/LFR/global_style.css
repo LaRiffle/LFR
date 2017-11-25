@@ -79,7 +79,7 @@ h1.special-font {
   color: white;
   font-size: 10rem;
 }
-#explore-page, #history-page, #collection-page{
+#explore-page, #history-page, #collection-page, #home-page{
   padding-bottom: 30px;
 }
 @media screen and (max-width: 567px) {
@@ -269,25 +269,34 @@ button.navbar-toggler:hover {
     margin-top: 13px;
   }
 }
-#nav_left_icon:hover, .love_icon:hover, #nav_toggle_btn button:hover {
+#nav_left_icon:hover, .love_icon:hover{
   border-color: #BA0020;
 }
 #nav_left_icon:hover i.full-heart, .love_icon:hover i.full-heart {
   opacity: 1;
 }
-@media screen and (max-width: 576px) {
-#nav_toggle_btn {
-  float: right;
-  margin-top: 13px;
-}
 #nav_toggle_btn button {
-  border-color: rgba(0,0,0,.1);
-  transition: border 0.5s;
-  right: 1rem;
+  display: none;
 }
-#nav_toggle_btn .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(186,0,32,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
+@media screen and (max-width: 576px) {
+  #nav_toggle_btn button{
+    display: initial;
+  }
+  #nav_toggle_btn button:hover {
+    border-color: #BA0020;
+  }
+  #nav_toggle_btn {
+    float: right;
+    margin-top: 13px;
+  }
+  #nav_toggle_btn button {
+    border-color: rgba(0,0,0,.1);
+    transition: border 0.5s;
+    right: 1rem;
+  }
+  #nav_toggle_btn .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(186,0,32,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
 }
 .full-heart {
   opacity: 0;
@@ -695,18 +704,20 @@ ul.edition-btn li:after {
   position: absolute;
   bottom: 0px;
   padding: 10px;
-  color: transparent;
+  color: white;
   -moz-transition: all .3s ease-in;
   -o-transition: all .3s ease-in;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
-}
-.collection-description:hover {
   background-image: linear-gradient(to bottom,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%);
+  opacity: 0;
+}
+.collection-item:hover .collection-description {
+  opacity: 1;
 }
 @media screen and (max-width: 576px) {
   .collection-description {
-    background-image: linear-gradient(to bottom,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%);
+    opacity: 1;
   }
 }
 .collection-description h3 {
@@ -809,6 +820,10 @@ ul.edition-btn li:after {
   }
   .lfr-box {
     margin: 1.5px;
+    min-width: 45%;
+  }
+  .lfr-inner .caption {
+    opacity: 1 !important;
   }
 }
 .lfr-box:after {

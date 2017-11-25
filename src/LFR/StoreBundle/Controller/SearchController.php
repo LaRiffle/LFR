@@ -19,9 +19,17 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 class SearchController extends Controller
 {
     public $entityNameSpace = 'LFRStoreBundle:Search';
-    public function startAction($collection = 'all', $category = 'all')
+    public function collectionAction($collection = 'all', $category = 'all')
     {
         $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('LFRStoreBundle:Creation');
+        $creations = $repository->findBy(array(), array('id' => 'desc'));
+        $imagehandler = $this->container->get('lfr_store.imagehandler');
+        foreach ($creations as $creation) {
+          $fileNames = $creation->getImages();
+          $path_small_image = $imagehandler->get_image_in_quality($fileNames[0], 'xs');
+          $creation->small_image = $path_small_image;
+        }
         $repository = $em->getRepository('LFRStoreBundle:Gender');
         $genders = $repository->findAll();
         $typeRepository = $em->getRepository('LFRStoreBundle:Type');
@@ -32,7 +40,8 @@ class SearchController extends Controller
         $collections = $repository->findAll();
         $repository = $em->getRepository('LFRStoreBundle:Category');
         $categories = $repository->findAll();
-        return $this->render($this->entityNameSpace.':start.html.twig', array(
+        return $this->render($this->entityNameSpace.':collection.html.twig', array(
+          'creations' => $creations,
           'genders' => $genders,
           'collections' => $collections,
           'collection_id' => $collection,

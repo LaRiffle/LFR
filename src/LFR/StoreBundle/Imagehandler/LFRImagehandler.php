@@ -46,7 +46,7 @@ class LFRImagehandler {
       $extension = pathinfo($path, PATHINFO_EXTENSION);
       if(in_array($extension, ['jpg', 'jpeg', 'JPG'])){
         $image = imagecreatefromjpeg($path);
-        $exif = exif_read_data($path);
+        $exif = @exif_read_data($path);
         if (empty($exif['Orientation']))
         {
             return false;
