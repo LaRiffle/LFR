@@ -35,11 +35,39 @@ class HomeController extends Controller
     {
         $text = [];
         $text['home']['title']['left'] = $this->fetchText('home:title:left');
+        $text['home']['text']['left'] = $this->fetchText('home:text:left');
+        $text['home']['btn']['left'] = $this->fetchText('home:btn:left');
         $text['home']['left_img'] = $this->fetchImage('home:left_img');
         $text['home']['title']['right'] = $this->fetchText('home:title:right');
+        $text['home']['text']['right'] = $this->fetchText('home:text:right');
+        $text['home']['btn']['right'] = $this->fetchText('home:btn:right');
         $text['home']['right_img'] = $this->fetchImage('home:right_img');
-        return $this->render('LFRStoreBundle:Home:home.html.twig', array(
-          'data' => $text
+
+        $text['home']['collection']['title'] = $this->fetchText('home:collection:title');
+        $text['home']['creation']['title'] = $this->fetchText('home:creation:title');
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('LFRStoreBundle:Collection');
+        $collections = $repository->findBy(array(), array('id' => 'desc'));
+        $imagehandler = $this->container->get('lfr_store.imagehandler');
+        foreach ($collections as $collection) {
+          $filename = $collection->getImage();
+          $path_small_image = $imagehandler->get_image_in_quality($filename, 'sm');
+          $collection->small_image = $path_small_image;
+        }
+
+        $repository = $em->getRepository('LFRStoreBundle:Creation');
+        $creations = $repository->findBy(array(), array('id' => 'desc'));
+        $imagehandler = $this->container->get('lfr_store.imagehandler');
+        foreach ($creations as $creation) {
+          $fileNames = $creation->getImages();
+          $path_small_image = $imagehandler->get_image_in_quality($fileNames[0], 'xs');
+          $creation->small_image = $path_small_image;
+        }
+        return $this->render('LFRStoreBundle:Home:home_2.html.twig', array(
+          'data' => $text,
+          'collections' => $collections,
+          'creations' => $creations
         ));
     }
 }

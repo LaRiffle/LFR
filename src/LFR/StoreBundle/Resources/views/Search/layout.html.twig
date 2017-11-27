@@ -92,8 +92,8 @@
       var collection = $(this).attr('data-collection');
       var category = $(this).attr('data-category');
       var types = $(this).attr('data-type').split(',').map(Number);
-      var visible = (collection == filter.collection || filter.collection == 'all')
-      visible = visible && (category == filter.category || filter.category == 'all')
+      var visible = (collection == filter.collection || filter.collection == '_')
+      visible = visible && (category == filter.category || filter.category == '_')
       if(filter.types.length > 0){
         var has_one_type = false;
         for(i in types){
@@ -201,13 +201,20 @@
   /*
     Script for the lateral mobile volet
   */
+  var lateral_visible = false;
   $('.close-lateral').on('click', function(e){
     e.preventDefault();
     $('#lateral_mobile').css('right', '-280px');
   })
   $('.show-lateral').on('click', function(e){
+    // more a toggle than a show
     e.preventDefault();
-    $('#lateral_mobile').css('right', '0px');
+    if(!lateral_visible){
+      $('#lateral_mobile').css('right', '0px');
+    } else {
+      $('#lateral_mobile').css('right', '-280px');
+    }
+    lateral_visible = !lateral_visible;
   })
 </script>
 <script>

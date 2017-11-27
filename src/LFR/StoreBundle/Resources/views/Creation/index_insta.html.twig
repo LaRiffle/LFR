@@ -1,4 +1,5 @@
 <div id="my_insta">
+  <div id="no_results"><h4>Pas de résultats</h4></div>
   <div class="lfr-grid">
     <div class="lfr-row">
       {% for creation in creations %}
@@ -17,15 +18,8 @@
           </a>
         </div>
       </div>
-      {% if loop.index is divisible by(301) %}
-        </div>
-        <div class="lfr-row">
-      {% endif %}
       {% if loop.last %}
-        {% if loop.index is divisible by(301) %}
-          </div>
-          <div class="lfr-row">
-        {% endif %}
+        {% set index = loop.index %}
         {% if is_granted('ROLE_ADMIN') %}
           <div class="lfr-box lfr-icon add-icon" style="z-index: {{creations|length + 1}};">
             <div class="lfr-inner">
@@ -34,10 +28,17 @@
               </a>
             </div>
           </div>
+          {% set index = index + 1 %}
         {% endif %}
-        <div class="lfr-box"><div class="lfr-inner"></div></div>
-        <div class="lfr-box"><div class="lfr-inner"></div></div>
-        <div class="lfr-box"><div class="lfr-inner"></div></div>
+        {% if (index + 1) is divisible by(3) %}
+          <div class="lfr-box visible-from-sm"><div class="lfr-inner"></div></div>
+        {% elseif (index + 2) is divisible by(3) %}
+          <div class="lfr-box visible-from-sm"><div class="lfr-inner"></div></div>
+          <div class="lfr-box visible-from-sm"><div class="lfr-inner"></div></div>
+        {% endif %}
+        {% if (index + 1) is divisible by(2) %}
+          <div class="lfr-box visible-to-xs"><div class="lfr-inner"></div></div>
+        {% endif %}
       {% endif %}
       {% endfor %}
     </div>

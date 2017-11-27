@@ -9,11 +9,11 @@ lfr_store_homepage:
     path:     /accueil
     defaults: { _controller: LFRStoreBundle:Home:homepage }
 lfr_store_collection:
-    path:     /collection
+    path:     /collections
     defaults: { _controller: LFRStoreBundle:Information:collection }
 lfr_store_explore:
-    path:     /collections/{collection}/{category}
-    defaults: { _controller: LFRStoreBundle:Search:collection, collection:"all", category:"all" }
+    path:     /collection/{collection}/{category}
+    defaults: { _controller: LFRStoreBundle:Search:collection, collection:"_", category:"_" }
 lfr_store_show:
     path:     /show/{id}
     defaults: { _controller: LFRStoreBundle:Search:show, id:0 }

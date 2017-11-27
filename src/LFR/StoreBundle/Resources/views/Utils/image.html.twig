@@ -3,7 +3,11 @@
 {% else %}
 {%   set src = element.image %}
 {% endif %}
-<img id="img-{{ element.id }}" src="{{ asset('uploads/img/' ~ src) }}" alt="" style="{{ style }}">
+{% if class is not defined %}
+    <img id="img-{{ element.id }}" src="{{ asset('uploads/img/' ~ src) }}" alt="" style="{{ style }}">
+{% else %}
+    <img id="img-{{ element.id }}" src="{{ asset('uploads/img/' ~ src) }}" alt="" style="{{ style }}" class="{{ class }}">
+{% endif %}
 {% if is_granted('ROLE_ADMIN') %}
 <a  style="" class="edit-img" id="{{ element.id }}" href="{{ path('lfr_admin_image_add', {'id': element.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
 {% endif %}

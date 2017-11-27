@@ -19,7 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 class SearchController extends Controller
 {
     public $entityNameSpace = 'LFRStoreBundle:Search';
-    public function collectionAction($collection = 'all', $category = 'all')
+    public function collectionAction($collection = '_', $category = '_')
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('LFRStoreBundle:Creation');
@@ -37,6 +37,12 @@ class SearchController extends Controller
           $gender->types = $typeRepository->whereGender($gender->getId());
         }
         $repository = $em->getRepository('LFRStoreBundle:Collection');
+        if($collection != '_'){
+          $collection_id = $repository->findOneBy(array('slug' => $collection))->getId();
+        } else {
+          $collection_id = $collection;
+        }
+
         $collections = $repository->findAll();
         $repository = $em->getRepository('LFRStoreBundle:Category');
         $categories = $repository->findAll();
@@ -44,7 +50,7 @@ class SearchController extends Controller
           'creations' => $creations,
           'genders' => $genders,
           'collections' => $collections,
-          'collection_id' => $collection,
+          'collection_id' => $collection_id,
           'categories' => $categories,
           'category_id' => $category
         ));
@@ -83,9 +89,9 @@ class SearchController extends Controller
             'creations' => $loved_creations,
             'genders' => $genders,
             'collections' => $collections,
-            'collection_id' => 'all',
+            'collection_id' => '_',
             'categories' => $categories,
-            'category_id' => 'all'
+            'category_id' => '_'
         ));
     }
     public function showAction()

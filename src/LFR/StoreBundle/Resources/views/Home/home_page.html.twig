@@ -2,6 +2,10 @@
 {% block title %}
   | Bienvenue
 {% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/LFR/slick/slick.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/LFR/slick/slick-theme.css') }}"/>
+{% endblock %}
 {% block body %}
   {{ render(controller('LFRStoreBundle:Home:home')) }}
 {% endblock %}
@@ -10,4 +14,6 @@
   {% set edit_script = "LFRStoreBundle:Utils:edit-handler.html.twig" %}
   {{ include(edit_script) }}
 {% endif %}
+{% set carousel_scripts = "LFRStoreBundle:Collection:index_scripts.html.twig" %}
+{{ include(carousel_scripts) }}
 {% endblock %}

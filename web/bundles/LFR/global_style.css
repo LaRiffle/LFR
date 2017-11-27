@@ -48,6 +48,9 @@ body, button, input, optgroup, select, textarea {
 .hide {
   display: none;
 }
+.center {
+  text-align: center;
+}
 a {
   outline: 0;
 }
@@ -62,7 +65,7 @@ a:hover, a:visited, a:link, a:active {
   /* background-color: rgb(154, 61, 96); */
 }
 #home-page {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
 }
 #title {
@@ -326,7 +329,7 @@ button.navbar-toggler:hover {
   left: 15px;
   background-color: #BA0020;
 }
-@media(min-width: 568px){
+@media(min-width: 576px){
   .visible-to-xs {
     display: none;
   }
@@ -372,6 +375,36 @@ button.navbar-toggler:hover {
   }
 }
 
+@media screen and (max-width: 576px) {
+  #home-page .card-deck {
+    margin-top: 20px;
+  }
+}
+#home-page .card-deck {
+  margin-top: 20px;
+}
+#home-page .card-deck .card-title {
+  text-align: center;
+  color: #BA0020;
+}
+#home-page .card-deck .card {
+  margin-bottom: 20px;
+}
+#home-page .card {
+  overflow: hidden;
+}
+#home-page .card-deck img:hover {
+  transform: scale(1.05); -webkit-transform: scale(1.05); -o-transform: scale(1.05); -moz-transform: scale(1.05);
+}
+#home-page .card-deck img{
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+#home-page .lfr-box {
+  visibility: visible;
+}
 
 .large-icon {
   margin-top: 30px;
@@ -400,19 +433,19 @@ button.navbar-toggler:hover {
     margin-right: 10%;
   }
   .large-icon h3 {
-    color: white;
+    color: #BA0020;
   }
   .large-icon .thumbnail img {
-    border: 1px #CCCCCC solid;
+    /*border: 1px #CCCCCC solid;*/
   }
   .large-icon a:hover img {
-    border: 1px #777777 solid;
+    /*border: 1px #777777 solid;*/
   }
   .icon-dummy {
     margin-top: 100%;
   }
   .large-icon .caption {
-      top: 56%;
+      top: -7%;
   }
 }
 .large-icon h3 {
@@ -427,7 +460,7 @@ button.navbar-toggler:hover {
 }
 .large-icon img {
   width: 100%;
-  border-radius: 10px;
+  /*border-radius: 10px;*/
 }
 .large-icon a:hover img {
   transform: scale(1.05); -webkit-transform: scale(1.05); -o-transform: scale(1.05); -moz-transform: scale(1.05);
