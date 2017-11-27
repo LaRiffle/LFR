@@ -635,10 +635,12 @@ a.filter:hover, a.filter:focus  {
   background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,.0001)),to(rgba(0,0,0,.5)));
   background-image: linear-gradient(to bottom,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%);
   padding-top: 30px;
-  opacity: 0;
   transition:opacity 0.3s linear;
   padding-left: 5px;
   padding-right: 5px;
+}
+.lfr-inner .caption {
+  opacity: 0;
 }
 .lfr-inner:hover .caption {
   opacity: 1;
