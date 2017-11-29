@@ -2,13 +2,13 @@
 <li class="list-group-item justify-content-between">
   <label class="" for="select_collection"><h5>Collection</h5></label>
   <select id="select_collection" class="form-control" placeholder="Collection">
-    <option {% if 'all' == collection_id %}selected="selected"{% endif %} value="all">Toutes les collections</option>
+    <option {% if '_' == collection_id %}selected="selected"{% endif %} value="_">Toutes les collections</option>
     {% for collection in collections %}
       <option {% if collection.id == collection_id %}selected="selected"{% endif %} value="{{ collection.id }}">{{ collection.title }}</option>
     {% endfor %}
   </select>
   <select id="select_category" class="form-control" placeholder="Collection" style="margin-top: 10px;">
-    <option {% if 'all' == category_id %}selected="selected"{% endif %} value="all">Vêtements & accessoires</option>
+    <option {% if '_' == category_id %}selected="selected"{% endif %} value="_">Vêtements & accessoires</option>
     {% for category in categories %}
       <option {% if category.slug == category_id %}selected="selected"{% endif %} value="{{ category.slug }}">{{ category.name }}</option>
     {% endfor %}

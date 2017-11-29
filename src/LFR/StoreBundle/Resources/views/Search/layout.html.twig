@@ -41,7 +41,7 @@
         var idx = $(this).index('.lfr-row .lfr-icon');
         var grid_j = idx % 3;
         var grid_i = (idx - idx % 3)/3;
-        console.log(grid_i + ' ' + grid_j);
+        //console.log(grid_i + ' ' + grid_j);
         var x = 10 - 50*grid_j + 0.3*Math.random() * width;
         var y = 10 - 50*grid_i + 0.3*Math.random() * height;
         var icon = Icon(x, y);
@@ -51,7 +51,7 @@
           x = 10 - 50*grid_j + 0.3*Math.random() * width;
           y = 10 - 50*grid_i + 0.3*Math.random() * height;
           icon = Icon(x, y);
-          console.log('try'+i);
+          //console.log('try'+i);
         }
         theta = (Math.random() - 0.5)*30;
         $(this).css('left', x);
@@ -155,7 +155,7 @@
     reorganize();
     var $input = $(this).find("input").first();
     $input.prop("checked", !$input.prop("checked"));
-    var type_id = Number(this.href.split('-')[1]);
+    var type_id = Number(this.href.split('-')[this.href.split('-').length-1]);
     if($input.prop("checked")){
       filter.types.push(type_id);
       $(this).find('i').removeClass('fa-circle-thin').addClass('fa-circle');

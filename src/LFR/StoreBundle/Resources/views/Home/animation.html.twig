@@ -1,4 +1,8 @@
 {% extends "LFRStoreBundle::layout.html.twig" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/LFR/slick/slick.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/LFR/slick/slick-theme.css') }}"/>
+{% endblock %}
 {% block body %}
 <div id="front-page">
   <div style="width: 0">
@@ -22,6 +26,8 @@
 
 {{ render(controller('LFRStoreBundle:Home:home')) }}
 {% endblock %}
+
+
 {% block script %}
 <script> document.getElementById('fb-icon').style.visibility='hidden'; </script>
 <script>
@@ -110,7 +116,6 @@ if(explorer || mobile) {
                   scrollTop: $("#home-page").offset().top
               },'slow');
             }
-            $('#front-page').slideUp(1000);
           }, 1500);
         }, 800);
       }
@@ -118,4 +123,22 @@ if(explorer || mobile) {
   });
 }
 </script>
+{% set carousel_scripts = "LFRStoreBundle:Collection:index_scripts.html.twig" %}
+{{ include(carousel_scripts) }}
+<script>
+$('.lfr-icon').slice(0,10).each(function(){
+  var img = $(this).find('img');
+  var img_width = img.width();
+  var img_height = img.height();
+  if(img_width < img_height){
+     img.addClass('portrait');
+  } else {
+     img.removeClass('portrait');
+  }
+});
+</script>
+{% if is_granted('ROLE_ADMIN') %}
+  {% set edit_script = "LFRStoreBundle:Utils:edit-handler.html.twig" %}
+  {{ include(edit_script) }}
+{% endif %}
 {% endblock %}

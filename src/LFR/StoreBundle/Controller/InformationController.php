@@ -39,6 +39,7 @@ class InformationController extends Controller
       $text = [];
       $text['history']['title'] = $this->fetchText('history:title');
       $text['history']['content'] = $this->fetchText('history:text');
+      $text['history']['image_message'] = $this->fetchImage('history:image_message');
       $text['history']['under'] = $this->fetchImage('history:under');
       $text['history']['over'] = $this->fetchImage('history:over');
       $text['author']['title'] = $this->fetchText('author:title');

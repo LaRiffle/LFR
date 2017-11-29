@@ -28,8 +28,12 @@
             </div>
           </div>
         </div>
-        <h3>{{ include(text, {'element': data.history.title }) }}</h3>
+        <h1 class="special-font" style="font-size: 5rem;">lefilrouge</h1>
+        <!-- <h3>{{ include(text, {'element': data.history.title }) }}</h3> -->
           <p>{{ include(text, {'element': data.history.content }) }}</p>
+          <div>
+              {{ include(image, {'element': data.history.image_message, 'style': 'width:300px;'}) }}
+          </div>
       </div>
     </div>
     <div class="row" style="margin-top: 15px;">
