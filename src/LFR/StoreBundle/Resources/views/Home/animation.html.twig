@@ -52,11 +52,10 @@ else if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search
 }
 // Block animation in some cases
 if(explorer || mobile) {
-  var src = '/bundles/LFR/animation/'+(mobile ? 'phone' : 'original')+'_noloop.gif'
+  var src = '/lfr/web/bundles/LFR/animation/'+(mobile ? 'phone' : 'original')+'_noloop.gif'
   $('#front-page').html('<div id="gif_cadre"><img id="gif_animation" src="'+src+'" /></div>')
   setTimeout(function(){
-    $('#front-page div').fadeOut();
-    $('#front-page').slideUp(1000);
+    $('#front-page').css('bottom', '100vh');
   }, 5000);
 } else { // Else do animation
   // Special settings for safari and chrome
