@@ -13,10 +13,10 @@
     <div class="row" style="margin-top: 25px;">
       <div class="offset-sm-3 col-sm-6" style="text-align: center;">
         <h3>{{ include(text, {'element': data.mail.title }) }}</h3>
-        <h5><i class="fa fa-envelope" style="color: #BA0020;"></i> {{ include(text, {'element': data.mail.content }) }}</h5>
+        <h5><a href="mailto:{{ data.mail.content.text|nl2br }}"><i class="fa fa-envelope" style="color: #BA0020;"></i> {{ include(text, {'element': data.mail.content }) }}</a></h5>
         <br /><br />
         <h3>{{ include(text, {'element': data.follow.title }) }}</h3>
-        <h5><i class="fa fa-facebook-official" style="color: #BA0020;"></i> {{ include(text, {'element': data.follow.content }) }}</h5>
+        <h5><a href="https://{{ data.follow.content.text|nl2br }}"><i class="fa fa-facebook-official" style="color: #BA0020;"></i> {{ include(text, {'element': data.follow.content }) }}</a></h5>
       </div>
     </div>
   </div>
