@@ -10,7 +10,7 @@
       </div>
       <div class="col-sm-7 col-md-6">
         <div class="visible-to-xs">
-          <h3>{{ creation.name }}</h3>
+          <h2>{{ creation.name }}</h2>
           <h4>
             {% if creation.onsold %}
               <span class="badge badge-primary badge-pill" style="padding: 16px;padding-top: 11px;padding-bottom: 9px;">{{ creation.price }} €</span>
@@ -39,7 +39,7 @@
           {{ include(edition_buttons, {'edit': path('lfr_admin_creation_add', {'id': creation.id}), 'remove': path('lfr_admin_creation_remove', {'id': creation.id}) }) }}
         {% endif %}
         <div class="visible-from-sm">
-          <h3>{{ creation.name }}</h3>
+          <h2>{{ creation.name }}</h2>
           <h4>
             {% if creation.onsold %}
               <span class="badge badge-primary badge-pill" style="padding: 16px;padding-top: 11px;padding-bottom: 9px;">{{ creation.price }} €</span>

@@ -1,38 +1,10 @@
 @font-face {
-    font-family: "Antro_Vectra";
-    src: url('fonts/Antro_Vectra.otf');
-}
-@font-face {
     font-family: "HaloHandletter";
     src: url('fonts/HaloHandletter.otf');
 }
 @font-face {
     font-family: "HaloHandletter_IE";
     src: url('fonts/HaloHandletter.eot');
-}
-@font-face {
-    font-family: "NellaSue";
-    src: url('fonts/NellaSue.ttf');
-}
-@font-face {
-    font-family: "Notera";
-    src: url('fonts/Notera.ttf');
-}
-@font-face {
-    font-family: "Run_Wild";
-    src: url('fonts/Run_Wild.ttf');
-}
-@font-face {
-    font-family: "Calibri";
-    src: url('fonts/Calibri.ttf');
-}
-@font-face {
-    font-family: "Candara";
-    src: url('fonts/Candara.ttf');
-}
-@font-face {
-    font-family: "Avenir-Book";
-    src: url('fonts/Avenir-Book.ttf');
 }
 @font-face {
     font-family: "Avenir-Light";
@@ -75,14 +47,17 @@ a:hover, a:visited, a:link, a:active {
   margin: 0 auto;
   padding-top: calc(50vh - 7rem - 2px);
 }
-h1.special-font {
+.title.special-font {
   color: #BA0020 ;/*rgb(215, 116, 154);*/
   white-space: nowrap;
   text-align: center;
   font-size: 6rem;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.1;
 }
 
-#front-page h1 {
+#front-page .title {
   color: white;
   font-size: 10rem;
 }
@@ -98,7 +73,7 @@ h1.special-font {
   }
 }
 
-h2 {
+.signature {
   text-align: center;
   color: #BA0020 ;
   font-weight: lighter;
@@ -107,8 +82,11 @@ h2 {
   left: 0.5rem;
   width: calc(100% - 0.5rem);
   font-size: 1.15rem;
+  margin-bottom: .5rem;
+  line-height: 1.1;
+  margin-top: 0;
 }
-h2.signature {
+#title .signature {
   color: white;
   bottom: 3.5rem;
   left: 0.75rem;
@@ -116,16 +94,19 @@ h2.signature {
   font-size: 1.9rem;
 }
 @media screen and (max-width: 576px) {
-  h1.special-font {
+  .title.special-font {
     font-size: 4rem;
     margin-top:0px !important;
   }
-  h2 {
+  .signature {
     font-size: 0.79rem;
     bottom: 1.74rem;
   }
 }
 h3 {
+  font-size: 2.5rem;
+}
+h2 {
   font-size: 2.5rem;
 }
 .special-font, .special-font2 {
@@ -392,6 +373,9 @@ button.navbar-toggler:hover {
   text-align: center;
   color: #BA0020;
 }
+#home-page .card-title {
+  font-size: 1.5rem;
+}
 #home-page .card-deck .card {
   margin-bottom: 20px;
 }
@@ -409,87 +393,6 @@ button.navbar-toggler:hover {
 }
 #home-page .lfr-box {
   visibility: visible;
-}
-
-.large-icon {
-  margin-top: 30px;
-}
-.icon-dummy {
-    margin-top: 125%;
-}
-.large-icon .caption {
-    /*margin-top: 10px;
-    margin-bottom: 30px;*/
-}
-.large-icon .caption {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    margin-top: 0px;
-}
-@media screen and (min-width: 576px) {
-  .large-icon-left {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-  .large-icon-right {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-  .large-icon h3 {
-    color: #BA0020;
-  }
-  .large-icon .thumbnail img {
-    /*border: 1px #CCCCCC solid;*/
-  }
-  .large-icon a:hover img {
-    /*border: 1px #777777 solid;*/
-  }
-  .icon-dummy {
-    margin-top: 100%;
-  }
-  .large-icon .caption {
-      top: -7%;
-  }
-}
-.large-icon h3 {
-  font-size: 2.5em;
-  font-weight: lighter;
-  text-align: center;
-}
-@media screen and (max-width: 991px) and (min-width: 576px) {
-  .large-icon h3 {
-    font-size: 2rem;
-  }
-}
-.large-icon img {
-  width: 100%;
-  /*border-radius: 10px;*/
-}
-.large-icon a:hover img {
-  transform: scale(1.05); -webkit-transform: scale(1.05); -o-transform: scale(1.05); -moz-transform: scale(1.05);
-}
-.large-icon a img {
-    transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    -o-transition: all 0.5s;
-}
-.icon-container {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-}
-.icon-element {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-.large-icon .thumbnail {
-    position: relative;
 }
 
 a.filter:hover, a.filter:focus  {
@@ -650,10 +553,13 @@ a.filter:hover, a.filter:focus  {
 .lfr-inner:hover .caption {
   opacity: 1;
 }
-.creation-icon .caption h4, .creation-icon .caption h5,
-.lfr-inner .caption h4, .lfr-inner .caption h5 {
+.creation-icon .caption h3, .creation-icon .caption h4, .creation-icon .caption h5,
+.lfr-inner .caption h3, .lfr-inner .caption h4, .lfr-inner .caption h5 {
   text-align: center;
   color: white;
+}
+.lfr-inner .caption h3 {
+  font-size: 1.5rem;
 }
 .creation-icon {
   width: calc(202px + 0.5rem);
@@ -760,7 +666,7 @@ ul.edition-btn li:after {
     opacity: 1;
   }
 }
-.collection-description h3 {
+.collection-description h2 {
   font-size: 2rem;
 }
 .collection-description p {
@@ -902,7 +808,7 @@ ul.edition-btn li:after {
   margin-right: 0px;
 }
 @media screen and (max-width: 576px) {
-  .lfr-box .lfr-inner h4 {
+  .lfr-box .lfr-inner h4, .lfr-box .lfr-inner h3 {
     font-size: 1.2rem;
   }
   .lfr-box .lfr-inner h5 {

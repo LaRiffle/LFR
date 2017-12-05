@@ -12,7 +12,7 @@
           <a href="{{ path('lfr_admin_creation_show', {'id': creation.id}) }}">
             <img src="{{ asset('uploads/img/' ~ creation.small_image) }}" alt="" style="">
             <div class="caption">
-              <h4>{{ creation.name }}</h4>
+              <h3>{{ creation.name }}</h3>
               {% if creation.onsold %}<h5>{{ creation.price }} €</h5>{% endif %}
             </div>
           </a>
