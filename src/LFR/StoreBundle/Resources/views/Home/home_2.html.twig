@@ -54,7 +54,7 @@
             </div>
             <h4 class="card-title" style="color: #BA0020;">{{ include(text, {'element': data.home.creation.title }) }}</h4>
             {% set icons = "LFRStoreBundle:Creation:index_insta.html.twig" %}
-            {{ include(icons, {'creations': creations}) }}
+            {{ include(icons, {'creations': creations,  'filterable': 'no'}) }}
           </div>
         </div>
       </div>

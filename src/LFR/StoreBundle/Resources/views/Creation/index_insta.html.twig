@@ -30,13 +30,21 @@
           </div>
           {% set index = index + 1 %}
         {% endif %}
-        {% if (index + 1) is divisible by(3) %}
+        {% if filterable == 'no'%}
+          {% if (index + 1) is divisible by(3) %}
+            <div class="lfr-box visible-from-sm"><div class="lfr-inner"></div></div>
+          {% elseif (index + 2) is divisible by(3) %}
+            <div class="lfr-box visible-from-sm"><div class="lfr-inner"></div></div>
+            <div class="lfr-box visible-from-sm"><div class="lfr-inner"></div></div>
+          {% endif %}
+          {% if (index + 1) is divisible by(2) %}
+            <div class="lfr-box visible-to-xs"><div class="lfr-inner"></div></div>
+          {% endif %}
+        {% else %}
           <div class="lfr-box visible-from-sm"><div class="lfr-inner"></div></div>
-        {% elseif (index + 2) is divisible by(3) %}
           <div class="lfr-box visible-from-sm"><div class="lfr-inner"></div></div>
           <div class="lfr-box visible-from-sm"><div class="lfr-inner"></div></div>
-        {% endif %}
-        {% if (index + 1) is divisible by(2) %}
+          <div class="lfr-box visible-to-xs"><div class="lfr-inner"></div></div>
           <div class="lfr-box visible-to-xs"><div class="lfr-inner"></div></div>
         {% endif %}
       {% endif %}
