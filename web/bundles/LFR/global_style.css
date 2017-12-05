@@ -169,7 +169,7 @@ h3 {
   -moz-transform: translateX(0px);
   -moz-transition: -webkit-transform 2s ease;
   transform: translateX(0px);
-  transition: -webkit-transform 2s ease;
+  transition: transform 2s ease;
   position: relative;
 }
 #gif_cadre {
@@ -254,6 +254,7 @@ button.navbar-toggler:hover {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  transition: opacity 1s ease;
 }
 #nav_left_icon, #nav_right_icon {
   position: absolute;

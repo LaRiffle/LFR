@@ -43,9 +43,9 @@
   </ul>
 </div>
 </nav>
-<a href="#"><div id="fb-icon" style="display: none" class="top_circle_icon"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></div></a>
+<a href="#"><div id="fb-icon" style="opacity: 0" class="top_circle_icon"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></div></a>
 <script>
   setTimeout(function(){
-    $('#fb-icon').fadeIn();
+    document.getElementById('fb-icon').style.opacity = '1';
   }, 300)
 </script>

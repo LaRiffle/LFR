@@ -29,15 +29,18 @@
 
 
 {% block script %}
-<script> document.getElementById('fb-icon').style.visibility='hidden'; </script>
+<script> document.getElementById('fb-icon').style.opacity='0'; </script>
 <script>
+console.log('Detecting IE');
+console.log(navigator.userAgent);
 var explorer = false;
 var chrome = false;
 var firefox = false;
 var safari = false;
 var mobile = false;
-if (navigator.userAgent.search("MSIE") >= 0) {
+if (navigator.userAgent.search("MSIE") >= 0 || navigator.userAgent.search("Trident") >= 0 ) {
     explorer = true;
+    console.log('IE');
 }
 else if (navigator.userAgent.search("Chrome") >= 0) {
     chrome = true;
@@ -50,8 +53,10 @@ else if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search
 } else if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     mobile = true;
 }
+
 // Block animation in some cases
-if(explorer || mobile) {
+if(mobile) {
+  console.log('IE or mobile');
   var src = '/lfr/web/bundles/LFR/animation/'+(mobile ? 'phone' : 'original')+'_noloop.gif'
   $('#front-page').html('<div id="gif_cadre"><img id="gif_animation" src="'+src+'" /></div>')
   setTimeout(function(){
@@ -59,10 +64,14 @@ if(explorer || mobile) {
   }, 5000);
 } else { // Else do animation
   // Special settings for safari and chrome
-  if(safari || chrome){
+  if(safari || chrome || explorer){
     $('#title h1 span:last-of-type').remove();
     $('#title h1 span:last-of-type').html('ge');
     $('h2.signature').css('left', '0.8rem');
+    if(explorer) {
+      $('.sober_link h2').css('left', '0.8rem');
+      $('.card-deck a').css('max-height', '370px');
+    }
   }
   $(document).ready(function(){
     var scrolled = false;
@@ -79,6 +88,7 @@ if(explorer || mobile) {
       var title_size = $('#title h1').width();
       var window_size = $('body').width();
       var title_coord_x = 1.2*(window_size-title_size)/2;
+      $('.fil-snake').hide().fadeIn();
       $('.fil-snake').css('width', title_coord_x+'px');
       $('.fil-snake').css('right', title_coord_x+'px');
       $('.fil-snake').css('visibility', 'visible');
@@ -118,6 +128,9 @@ if(explorer || mobile) {
             }*/
             if(!scrolled){
               $('#front-page').css('bottom', '100vh');
+              setTimeout(function(){
+                $('#front-page').fadeOut();
+              }, 1000);
             }
           }, 1500);
         }, 800);
