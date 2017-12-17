@@ -33,16 +33,25 @@
             }, 500);
       });
   }
+
   var editImgs = $('.edit-img');
   for(i=0; i<editImgs.length; i++){
       $(editImgs[i]).on('click', function(e){
           e.preventDefault();
           var url = this.href;
           var id = this.id;
+          var credit = $('#img-'+id).parent().find('.photo-credit a').last().attr('data-original-title');
+          if(credit == undefined){
+            credit = '';
+          }
           var box = bootbox.dialog({
                 message: '<form class="form-signin" name="form" method="post" enctype="multipart/form-data" action="'+url+'">'
                   +'<h5 class="form-signin-heading">Modifier une image</h5>'
                   +'<input id="form_image" name="form[image]" class="form-control" placeholder="Ajouter une image" type="file">'
+                  +'<div style="margin-top: 10px;"><a href="#" id="credit-add">Ajouter/gérer les crédits photo</a></div>'
+                  +'<div id="credit-input" class="hide" style="margin-top: 10px;">'
+                    +'<input id="form_credit" placeholder="Crédits pour l\'illustration" value="'+credit+'" name="form[credit]" class="form-control" type="text">'
+                  +'</div>'
                   +'<div style="margin-top: 10px;">'
                     +'<button type="submit" id="form_save" name="form[save]" class="btn btn-primary ">Publier</button>'
                   +'</div>'
@@ -57,4 +66,8 @@
             });
       });
   }
+  $('body').on('click', '#credit-add', function(e){
+    e.preventDefault();
+    $('#credit-input').show();
+  });
 </script>

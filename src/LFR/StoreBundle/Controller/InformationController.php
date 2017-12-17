@@ -108,6 +108,7 @@ class InformationController extends Controller
         $form = $this->get('form.factory')->createBuilder(FormType::class, $image)
         ->add('role', TextType::class)
         ->add('image', FileType::class, array('label' => 'Image', 'required' => False))
+        ->add('credit', TextType::class)
         ->add('save',	SubmitType::class)
         ->getForm();
 

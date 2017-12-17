@@ -36,6 +36,13 @@ class Image
      */
     private $image;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="credit", type="text", nullable=true)
+     */
+    private $credit;
+
 
     /**
      * Get id
@@ -81,5 +88,29 @@ class Image
         $this->image = $image;
 
         return $this;
+    }
+
+    /**
+     * Set credit
+     *
+     * @param string $credit
+     *
+     * @return Image
+     */
+    public function setCredit($credit)
+    {
+        $this->credit = $credit;
+
+        return $this;
+    }
+
+    /**
+     * Get credit
+     *
+     * @return string
+     */
+    public function getCredit()
+    {
+        return $this->credit;
     }
 }

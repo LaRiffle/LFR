@@ -3,6 +3,14 @@
 {% else %}
 {%   set src = element.image %}
 {% endif %}
+{% if element.credit is not empty %}
+  <div class="photo-credit">
+    <a href="#" data-toggle="tooltip" data-placement="right"
+      title="{{ element.credit }}">
+      i
+    </a>
+  </div>
+{% endif %}
 {% if class is not defined %}
     <img id="img-{{ element.id }}" src="{{ asset('uploads/img/' ~ src) }}" alt="" style="{{ style }}">
 {% else %}

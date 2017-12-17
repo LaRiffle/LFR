@@ -825,3 +825,14 @@ ul.edition-btn li:after {
     font-size: 1.5rem;
   }
 }
+.photo-credit {
+  position: absolute;
+  z-index:2;
+  padding: 2px 8px;
+  font-family: Times;
+  font-style: italic;
+  font-weight: bold;
+}
+.photo-credit a {
+  color: rgba(0,0,0,0.3);
+}
