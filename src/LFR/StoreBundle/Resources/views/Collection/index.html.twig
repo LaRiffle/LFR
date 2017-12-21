@@ -3,6 +3,14 @@
   {% for collection in collections %}
   <div class="collection-item">
     <a href="{{ path('lfr_store_explore', {'collection': collection.slug }) }}">
+      {% if collection.credit is not empty %}
+        <div class="photo-credit">
+          <a href="#" data-toggle="tooltip" data-placement="right"
+            title="{{ collection.credit }}">
+            i
+          </a>
+        </div>
+      {% endif %}
       <img class="collection-img" src="{{ asset('uploads/img/' ~ collection.small_image) }}">
       <div class="item-overlay top"></div>
     </a>

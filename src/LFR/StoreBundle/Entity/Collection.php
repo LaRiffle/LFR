@@ -50,6 +50,13 @@ class Collection
      */
     private $image;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="credit", type="text", nullable=true)
+     */
+    private $credit;
+
 
     /**
      * Get id
@@ -155,5 +162,29 @@ class Collection
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set credit
+     *
+     * @param string $credit
+     *
+     * @return Collection
+     */
+    public function setCredit($credit)
+    {
+        $this->credit = $credit;
+
+        return $this;
+    }
+
+    /**
+     * Get credit
+     *
+     * @return string
+     */
+    public function getCredit()
+    {
+        return $this->credit;
     }
 }

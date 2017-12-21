@@ -18,10 +18,22 @@
         {{ include(input_form, {'element': form.image, 'name':"Ajouter une image"}) }}
         <em>Attention, les images des collections doivent respecter à peu prêt le même format entre elles,
           sinon les plus allongées seront coupées en haut et en bas lors de l'affichage.</em>
+        <div style="margin-top: 10px;"><a href="#" id="credit-add">Ajouter/gérer les crédits photo</a></div>
+        <div id="credit-input" class="hide">
+          {{ include(input_form, {'element': form.credit, 'name':"Crédits pour l'illustration"}) }}
+        </div>
         {{ include(save_form, {'element': form.save, 'name':"Ajouter la collection"}) }}
         {{ form_rest(form) }}
       </form>
     </div>
   </div>
 </div>
+{% endblock %}
+{% block script %}
+<script>
+$('body').on('click', '#credit-add', function(e){
+  e.preventDefault();
+  $('#credit-input').show();
+});
+</script>
 {% endblock %}

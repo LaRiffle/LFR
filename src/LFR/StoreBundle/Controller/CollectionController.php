@@ -91,6 +91,7 @@ class  CollectionController extends Controller
         ->add('title', TextType::class)
         ->add('description', TextareaType::class)
         ->add('image', FileType::class, array('label' => 'Image', 'required' => False))
+        ->add('credit', TextType::class)
         ->add('save',	SubmitType::class)
         ->getForm();
 
